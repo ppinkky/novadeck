@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaDeck — Customer testimonials</title>
+  <meta name="description" content="Customer testimonials for NovaDeck LED DJ risers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#06070d;
+      --ink2:#0a0d16;
+      --panel:#0f1320;
+      --line:#1d2434;
+      --line2:#2a3346;
+      --fog:#7b86a0;
+      --mute:#aab3c6;
+      --chalk:#eef1f8;
+      --cyan:#23e7ff;
+      --blue:#1f6bff;
+      --magenta:#ff2bd6;
+      --laser:linear-gradient(90deg,var(--cyan),var(--blue) 50%,var(--magenta));
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--chalk);
+      background:radial-gradient(circle at top, rgba(31,107,255,.12), transparent 30%),
+                 radial-gradient(circle at bottom right, rgba(255,43,214,.09), transparent 28%),
+                 var(--ink);
+      font-family:'JetBrains Mono',monospace;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    .display{font-family:'Poppins',sans-serif}
+    .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+    .page-shell{
+      min-height:100vh;
+      padding:28px 0 70px;
+      position:relative;
+      overflow:hidden;
+    }
+    .page-shell::before,
+    .page-shell::after{
+      content:"";
+      position:absolute;
+      inset:auto;
+      width:42vw;
+      height:42vw;
+      max-width:560px;
+      max-height:560px;
+      border-radius:50%;
+      filter:blur(90px);
+      opacity:.2;
+      pointer-events:none;
+    }
+    .page-shell::before{
+      left:-120px;
+      top:-80px;
+      background:rgba(31,107,255,.46);
+    }
+    .page-shell::after{
+      right:-160px;
+      bottom:-80px;
+      background:rgba(255,43,214,.38);
+    }
+
+    nav{
+      position:relative;
+      z-index:2;
+      padding:18px 0 6px;
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      max-width:1160px;
+      margin:0 auto;
+      padding:0 24px;
+    }
+    .brand{
+      font-family:'Poppins',sans-serif;
+      font-size:clamp(1.8rem,2.2vw,2.5rem);
+      font-weight:800;
+      letter-spacing:-.04em;
+      line-height:1;
+    }
+    .brand-mark{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+    .brand-mark::after{
+      content:"";
+      display:block;
+      height:4px;
+      width:100%;
+      min-width:44px;
+      border-radius:999px;
+      background:var(--laser);
+      box-shadow:0 0 18px rgba(31,107,255,.6),0 0 26px rgba(255,43,214,.35);
+      margin-top:10px;
+    }
+    .nav-pill{
+      padding:12px 18px;
+      border-radius:999px;
+      border:1px solid var(--line2);
+      background:rgba(11,16,27,.5);
+      color:var(--chalk);
+      font-family:'Poppins',sans-serif;
+      font-weight:600;
+      font-size:.82rem;
+      letter-spacing:.02em;
+      transition:transform .15s ease,border-color .2s ease;
+    }
+    .nav-pill:hover{
+      transform:translateY(-1px);
+      border-color:var(--cyan);
+    }
+
+    .hero{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:52px 0 22px;
+    }
+    .eyebrow{
+      font-size:12px;
+      letter-spacing:.38em;
+      text-transform:uppercase;
+      color:var(--cyan);
+      margin-bottom:18px;
+    }
+    h1{
+      font-family:'Poppins',sans-serif;
+      font-weight:800;
+      letter-spacing:-.04em;
+      line-height:1.02;
+      font-size:clamp(2.8rem,6vw,6rem);
+      max-width:900px;
+      margin:0 auto;
+    }
+    .lead{
+      max-width:760px;
+      margin:18px auto 0;
+      color:var(--mute);
+      font-size:clamp(1rem,2vw,1.2rem);
+    }
+
+    .results{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
+      margin-top:44px;
+    }
+    .stat{ 
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(15,19,32,.92), rgba(10,13,22,.9));
+      padding:24px 20px;
+      text-align:center;
+      box-shadow:0 18px 40px rgba(2,6,12,.35);
+    }
+    .stat strong{
+      display:block;
+      font-family:'Poppins',sans-serif;
+      font-size:clamp(1.9rem,3vw,2.7rem);
+      letter-spacing:-.05em;
+      margin-bottom:8px;
+    }
+    .stat span{
+      color:var(--mute);
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .testimonial-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:22px;
+      margin-top:54px;
+    }
+
+    .quote-card{
+      position:relative;
+      background:linear-gradient(180deg, rgba(15,19,32,.96), rgba(9,12,21,.96));
+      border:1px solid var(--line2);
+      border-radius:22px;
+      padding:26px 22px 18px;
+      box-shadow:0 18px 42px rgba(4,8,18,.32);
+      overflow:hidden;
+    }
+    .quote-card::before{
+      content:"";
+      position:absolute;
+      inset:0 auto auto 0;
+      width:100%;
+      height:2px;
+      background:var(--laser);
+    }
+    .stars{
+      color:var(--cyan);
+      letter-spacing:.18em;
+      font-size:.82rem;
+      margin-bottom:18px;
+    }
+    .quote-card p{
+      color:var(--chalk);
+      font-size:1rem;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+    .person{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-top:auto;
+    }
+    .avatar{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:'Poppins',sans-serif;
+      font-weight:700;
+      font-size:.8rem;
+      background:linear-gradient(135deg, rgba(35,231,255,.2), rgba(255,43,214,.2));
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--chalk);
+    }
+    .name{
+      font-family:'Poppins',sans-serif;
+      font-weight:600;
+      font-size:1rem;
+    }
+    .meta{
+      color:var(--mute);
+      font-size:.75rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .featured{
+      margin-top:64px;
+      padding:26px 0 0;
+      border-top:1px solid var(--line);
+    }
+    .featured-box{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:26px;
+      align-items:center;
+      border:1px solid var(--line2);
+      border-radius:24px;
+      background:linear-gradient(135deg, rgba(16,20,31,.9), rgba(10,13,22,.96));
+      padding:28px;
+    }
+    .featured-box h2{
+      margin-bottom:10px;
+      font-family:'Poppins',sans-serif;
+      font-weight:700;
+      font-size:clamp(1.8rem,3vw,2.6rem);
+      letter-spacing:-.04em;
+      line-height:1.15;
+    }
+    .featured-box p{
+      color:var(--mute);
+    }
+    .mini-quote{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:170px;
+      border-radius:18px;
+      background:radial-gradient(circle at top left, rgba(35,231,255,.1), transparent 32%), rgba(10,13,22,.85);
+      border:1px solid var(--line2);
+      padding:24px;
+    }
+    .mini-quote .quote-mark{
+      color:var(--cyan);
+      font-size:2.5rem;
+      line-height:1;
+      margin-bottom:12px;
+    }
+    .mini-quote p{
+      font-size:1.05rem;
+      line-height:1.7;
+      color:var(--chalk);
+    }
+
+    @media (max-width: 900px){
+      .results, .testimonial-grid, .featured-box{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 560px){
+      .nav-inner{padding:0 18px}
+      .nav-pill{display:none}
+      .hero{padding-top:30px}
+      .eyebrow{letter-spacing:.26em}
+      .lead{font-size:1rem}
+      .quote-card{padding:20px 18px}
+      .featured-box{padding:20px 18px}
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <nav>
+      <div class="nav-inner">
+        <div class="brand display">
+          <span class="brand-mark">novadeck</span>
+        </div>
+        <a class="nav-pill display" href="#testimonials">Testimonials</a>
+      </div>
+    </nav>
+
+    <header class="hero wrap">
+      <div class="eyebrow">People who play loud</div>
+      <h1 class="display">What the booth feels like, from the people using it.</h1>
+      <p class="lead">The NovaDeck riser is designed to make a bedroom setup feel real. These are the comments from DJs who wanted more presence, more atmosphere, and more energy in the room.</p>
+
+      <div class="results">
+        <div class="stat">
+          <strong class="display">4.9/5</strong>
+          <span>Avg. rating</span>
+        </div>
+        <div class="stat">
+          <strong class="display">120+</strong>
+          <span>Creative setups</span>
+        </div>
+        <div class="stat">
+          <strong class="display">1.1k</strong>
+          <span>Instagram saves</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap" id="testimonials">
+      <section class="testimonial-grid" aria-label="Customer testimonials">
+        <article class="quote-card">
+          <div class="stars">★★★★★</div>
+          <p>“It made my setup instantly feel like a real booth. The glow is subtle but powerful, and the controller looks way more intentional on the desk.”</p>
+          <div class="person">
+            <div class="avatar">DN</div>
+            <div>
+              <div class="name display">Dion N.</div>
+              <div class="meta">Bedroom DJ</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="quote-card">
+          <div class="stars">★★★★★</div>
+          <p>“I didn’t expect it to change my vibe this much. My room feels more focused, more serious, and honestly more expensive when I’m mixing.”</p>
+          <div class="person">
+            <div class="avatar">AJ</div>
+            <div>
+              <div class="name display">Ariana J.</div>
+              <div class="meta">Producer + DJ</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="quote-card">
+          <div class="stars">★★★★★</div>
+          <p>“The design is clean, but the feeling is what sells it. It turns a flat desk into a stage and makes me want to play longer sets.”</p>
+          <div class="person">
+            <div class="avatar">RK</div>
+            <div>
+              <div class="name display">Rafael K.</div>
+              <div class="meta">Live mixer</div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="featured" aria-label="Featured customer feedback">
+        <div class="featured-box">
+          <div>
+            <div class="eyebrow" style="margin-bottom:8px; text-align:left;">Featured review</div>
+            <h2 class="display">“It finally looks like the set I hear in my head.”</h2>
+            <p>We built NovaDeck for people who spend hours crafting the right sound, but still end up with a setup that looks too casual. This is the piece that closes that gap.</p>
+          </div>
+          <div class="mini-quote">
+            <div class="quote-mark">“</div>
+            <p>My controller used to sit flat and disappear. Now it feels like the star of the room — and it gives every session a little more energy.</p>
+            <div class="meta" style="margin-top:18px; letter-spacing:.12em;">Maya S. — mix host</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
