@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaDeck — Previous drops</title>
+  <meta name="description" content="A look back at previous NovaDeck drops, builds, and setups.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#06070d;
+      --ink2:#0a0d16;
+      --panel:#0f1320;
+      --line:#1d2434;
+      --line2:#2a3346;
+      --fog:#7b86a0;
+      --mute:#aab3c6;
+      --chalk:#eef1f8;
+      --cyan:#23e7ff;
+      --blue:#1f6bff;
+      --magenta:#ff2bd6;
+      --laser:linear-gradient(90deg,var(--cyan),var(--blue) 50%,var(--magenta));
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      color:var(--chalk);
+      background:
+        radial-gradient(55% 40% at 15% 0%,rgba(31,107,255,.16),transparent 70%),
+        radial-gradient(45% 45% at 90% 85%,rgba(255,43,214,.12),transparent 70%),
+        var(--ink);
+      font-family:'JetBrains Mono',monospace;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    .display{font-family:'Poppins',sans-serif}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+    .page{min-height:100vh;padding:0 0 80px}
+    nav{position:sticky;top:0;z-index:50;background:var(--ink);border-bottom:1px solid var(--line)}
+    .nav-in{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:flex-end;position:relative;font-family:'Poppins',sans-serif;font-size:21px;font-weight:700;letter-spacing:-.01em;padding-bottom:8px}
+    .brand::after{content:"";position:absolute;left:-3px;right:-3px;bottom:0;height:4px;border-radius:2px;background:var(--laser);box-shadow:0 0 10px rgba(31,107,255,.6)}
+    .nav-left{display:flex;align-items:center;gap:24px}
+    .nav-right{display:flex;align-items:center;gap:16px}
+    .nav-ig{color:var(--mute);display:flex;transition:color .2s ease,transform .15s ease}
+    .nav-ig:hover{color:var(--cyan);transform:translateY(-1px)}
+    .nav-cta{background:var(--chalk);border-radius:30px;color:var(--ink);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:10px 18px;transition:box-shadow .2s ease,transform .15s ease}
+    .nav-cta:hover{box-shadow:0 8px 24px rgba(35,231,255,.25);transform:translateY(-1px)}
+    .nav-tab{color:var(--mute);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;transition:color .2s ease}
+    .nav-tab:hover{color:var(--cyan)}
+    .nav-tab.active{color:var(--cyan)}
+    .menu-toggle{display:none;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;gap:5px;border:1px solid var(--line2);border-radius:50%;background:transparent;color:var(--chalk);cursor:pointer}
+    .menu-toggle span{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .2s ease,opacity .2s ease}
+    .menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(7px) rotate(45deg)}
+    .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none}
+    .hero{text-align:center;padding:80px 0 58px}
+    .eyebrow{color:var(--cyan);font-size:11px;letter-spacing:.34em;margin-bottom:18px;text-transform:uppercase}
+    h1{font-family:'Poppins',sans-serif;font-size:clamp(42px,8vw,82px);font-weight:800;letter-spacing:-.05em;line-height:1.02}
+    .lead{color:var(--mute);font-size:clamp(14px,2vw,17px);margin:22px auto 0;max-width:680px}
+    .timeline{max-width:1120px;margin:0 auto;padding:0 24px 0 72px;position:relative}
+    .timeline::before{background:linear-gradient(180deg,var(--cyan),var(--blue) 50%,var(--magenta));bottom:0;content:"";left:24px;opacity:.7;position:absolute;top:92px;width:2px}
+    .batch{margin-top:72px;position:relative}
+    .batch-header{align-items:end;border-bottom:1px solid var(--line2);display:flex;gap:20px;justify-content:space-between;padding-bottom:20px;position:relative}
+    .batch-header::before{background:var(--ink);border:2px solid var(--cyan);border-radius:50%;box-shadow:0 0 16px rgba(35,231,255,.45);content:"";height:14px;left:-54px;position:absolute;top:16px;width:14px}
+    .batch:first-child .batch-header::before{border-color:var(--magenta);box-shadow:0 0 16px rgba(255,43,214,.45)}
+    .batch:last-child .batch-header::before{border-color:var(--cyan);box-shadow:0 0 16px rgba(35,231,255,.45)}
+    .batch.upcoming .batch-header::before{border-color:var(--cyan);box-shadow:0 0 18px rgba(35,231,255,.7)}
+    .batch.upcoming .gallery{border:1px dashed var(--line2);border-radius:14px;min-height:220px;place-items:center}
+    .coming-soon{color:var(--mute);font-size:12px;letter-spacing:.12em;text-align:center;text-transform:uppercase}
+    .batch-label{color:var(--cyan);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+    h2{font-family:'Poppins',sans-serif;font-size:clamp(34px,5vw,58px);font-weight:800;letter-spacing:-.05em;line-height:1}
+    .batch-note{color:var(--mute);font-size:12px;text-align:right}
+    .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+    .media-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;cursor:zoom-in;overflow:hidden;position:relative}
+    .media-card::after{background:var(--laser);bottom:0;content:"";height:2px;left:0;position:absolute;right:0}
+    .media-card img{aspect-ratio:1/1;display:block;height:auto;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .35s ease;width:100%}
+    .media-card::before{background:linear-gradient(180deg,transparent 45%,rgba(6,7,13,.85));content:"";inset:0;opacity:0;pointer-events:none;position:absolute;transition:opacity .25s ease;z-index:1}
+    .media-card:hover img{filter:saturate(1.12);transform:scale(1.06)}
+    .media-card:hover::before{opacity:1}
+    .media-caption{bottom:0;color:var(--chalk);font-size:11px;letter-spacing:.08em;opacity:0;padding:16px;position:absolute;text-transform:uppercase;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;z-index:2}
+    .media-card:hover .media-caption{opacity:1;transform:none}
+    .empty-video{align-items:center;aspect-ratio:1/1;background:linear-gradient(145deg,var(--panel),var(--ink2));color:var(--fog);display:flex;justify-content:center;text-align:center;padding:25px}
+    .empty-video span{border:1px dashed var(--line2);border-radius:12px;padding:18px;width:100%}
+    footer{border-top:1px solid var(--line);margin-top:76px;padding:48px 0 60px;text-align:center}
+    .foot-brand{display:inline-block;font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;margin-bottom:16px;padding-bottom:7px;position:relative}
+    .foot-brand .tm{color:var(--fog);font-size:.5em;vertical-align:super}
+    .foot-brand::after{background:var(--laser);bottom:0;content:"";height:3px;left:0;position:absolute;right:0;border-radius:2px}
+    .foot-tag{color:var(--fog);font-size:12px;letter-spacing:.28em;text-transform:uppercase}
+    .socials{display:flex;justify-content:center;gap:14px;margin:24px 0 4px}
+    .soc{align-items:center;border:1px solid var(--line2);border-radius:11px;color:var(--mute);display:flex;height:42px;justify-content:center;transition:border-color .2s ease,color .2s ease,transform .15s ease,box-shadow .2s ease;width:42px}
+    .soc svg{height:19px;width:19px}
+    .soc:hover{border-color:var(--cyan);box-shadow:0 8px 22px rgba(35,231,255,.18);color:var(--chalk);transform:translateY(-2px)}
+    .foot-meta{color:#475066;font-size:12px;margin-top:22px}
+    .lightbox{align-items:center;background:rgba(3,5,10,.92);display:flex;inset:0;justify-content:center;opacity:0;padding:28px;pointer-events:none;position:fixed;transition:opacity .25s ease;z-index:10}
+    .lightbox.is-open{opacity:1;pointer-events:auto}
+    .lightbox img{border:1px solid var(--line2);border-radius:12px;box-shadow:0 24px 80px rgba(0,0,0,.65);max-height:88vh;max-width:min(100%,1000px);object-fit:contain}
+    .lightbox-close{background:var(--chalk);border:0;border-radius:50%;color:var(--ink);cursor:pointer;font-size:25px;height:42px;line-height:1;position:absolute;right:24px;top:24px;width:42px}
+    .lightbox-label{bottom:22px;color:var(--mute);font-size:11px;left:0;letter-spacing:.12em;position:absolute;right:0;text-align:center;text-transform:uppercase}
+    @media (max-width:700px){
+      .hero{padding:58px 0 38px}
+      .nav-in{position:relative}
+      .nav-left .nav-tab{display:none}
+      .nav-right{display:none}
+      .menu-toggle{display:flex}
+      .mobile-menu{position:fixed;top:0;right:0;bottom:0;left:auto;width:min(320px,84vw);z-index:70;padding:94px 24px 28px;border-left:1px solid var(--line);background:var(--ink);box-shadow:-18px 0 50px rgba(0,0,0,.38);transform:translateX(100%);transition:transform .28s ease}
+      .mobile-menu.open{display:flex;flex-direction:column;align-items:stretch;gap:8px;transform:translateX(0)}
+      .mobile-menu a{padding:16px 12px;border-bottom:1px solid var(--line);color:var(--mute);font-family:'Poppins',sans-serif;font-size:18px;font-weight:600}
+      .mobile-menu a:hover,.mobile-menu a.active{color:var(--cyan);background:rgba(35,231,255,.06)}
+      .timeline{padding-left:48px;padding-right:18px}
+      .timeline::before{left:18px}
+      .batch-header::before{left:-38px;height:12px;width:12px}
+      .batch-header{align-items:start;display:block}
+      .batch-note{margin-top:10px;text-align:left}
+      .gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    }
+    @media (max-width:440px){
+      .gallery{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav>
+      <div class="wrap nav-in">
+        <div class="nav-left">
+          <a class="brand" href="index.html">novadeck</a>
+          <a class="nav-tab" href="index.html">Home</a>
+          <a class="nav-tab active" href="our-journey.html" aria-current="page">Our Journey</a>
+          <a class="nav-tab" href="https://76z6kw-xw.myshopify.com/" target="_blank" rel="noopener">Our Products</a>
+        </div>
+        <div class="nav-right">
+          <a href="https://www.instagram.com/officialnovadeck?igsi=MTY1dWVtNXdyajd6NA%3D%3D" target="_blank" rel="noopener" class="nav-ig" aria-label="NovaDeck on Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://76z6kw-xw.myshopify.com/" target="_blank" rel="noopener" class="nav-cta">Buy now</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="mobile-menu" id="mobile-menu">
+          <a href="index.html">Home</a>
+          <a href="our-journey.html" class="active" aria-current="page">Our Journey</a>
+          <a href="https://76z6kw-xw.myshopify.com/" target="_blank" rel="noopener">Our Products</a>
+          <a href="https://76z6kw-xw.myshopify.com/" target="_blank" rel="noopener">Buy now</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero wrap">
+      <div class="eyebrow">Our Journey</div>
+      <h1>Previous drops.</h1>
+      <p class="lead">Every build has a story. Take a look back at the risers, setups, and glow from NovaDeck's first drops.</p>
+    </header>
+
+    <div class="timeline">
+    <section class="batch upcoming" aria-labelledby="batch-3-title">
+      <div class="batch-header">
+        <div>
+          <div class="batch-label">Date TBD</div>
+          <h2 id="batch-3-title">Batch3 - GRV6</h2>
+        </div>
+        <div class="batch-note">Coming soon</div>
+      </div>
+      <div class="gallery">
+        <figure class="media-card"><img src="images/GRV6/Photo 1.png" alt="NovaDeck GRV6 setup 1" loading="lazy"><figcaption class="media-caption">GRV6 · 01</figcaption></figure>
+        <figure class="media-card"><img src="images/GRV6/Photo 2.png" alt="NovaDeck GRV6 setup 2" loading="lazy"><figcaption class="media-caption">GRV6 · 02</figcaption></figure>
+        <figure class="media-card"><img src="images/GRV6/Photo 3.png" alt="NovaDeck GRV6 setup 3" loading="lazy"><figcaption class="media-caption">GRV6 · 03</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="batch" aria-labelledby="batch-2-title">
+      <div class="batch-header">
+        <div>
+          <div class="batch-label">Oct 2026</div>
+          <h2 id="batch-2-title">Batch2-FLX4</h2>
+        </div>
+        <div class="batch-note">Sold 30/30</div>
+      </div>
+      <div class="gallery">
+        <figure class="media-card"><img src="images/FLX4/Photo2.png" alt="NovaDeck FLX4 Batch 2 setup 1" loading="lazy"><figcaption class="media-caption">Batch 2 · 01</figcaption></figure>
+        <figure class="media-card"><img src="images/FLX4/Photo 3.png" alt="NovaDeck FLX4 Batch 2 setup 2" loading="lazy"><figcaption class="media-caption">Batch 2 · 02</figcaption></figure>
+        <figure class="media-card"><img src="images/FLX4/buckeye lake.jpg" alt="NovaDeck FLX4 Batch 2 setup 3" loading="lazy"><figcaption class="media-caption">Batch 2 · 03</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="batch" aria-labelledby="batch-1-title">
+      <div class="batch-header">
+        <div>
+          <div class="batch-label">Aug 2026</div>
+          <h2 id="batch-1-title">Batch1 - FLX4</h2>
+        </div>
+        <div class="batch-note">Sold 20/20</div>
+      </div>
+      <div class="gallery">
+        <figure class="media-card"><img src="images/FLX4/basement glow.jpg" alt="NovaDeck FLX4 Batch 1 setup 1" loading="lazy"><figcaption class="media-caption">Batch 1 · 01</figcaption></figure>
+        <figure class="media-card"><img src="images/FLX4/basement glow 2.jpg" alt="NovaDeck FLX4 Batch 1 setup 2" loading="lazy"><figcaption class="media-caption">Batch 1 · 02</figcaption></figure>
+        <figure class="media-card"><img src="images/FLX4/basement glow 3.jpg" alt="NovaDeck FLX4 Batch 1 setup 3" loading="lazy"><figcaption class="media-caption">Batch 1 · 03</figcaption></figure>
+        <figure class="media-card"><img src="images/FLX4/basement glow 4.jpg" alt="NovaDeck FLX4 Batch 1 setup 4" loading="lazy"><figcaption class="media-caption">Batch 1 · 04</figcaption></figure>
+      </div>
+    </section>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <div class="foot-brand">novadeck<span class="tm">™</span></div>
+        <div class="foot-tag">Light up your set</div>
+        <div class="socials">
+          <a href="https://www.instagram.com/officialnovadeck?igsi=MTY1dWVtNXdyajd6NA%3D%3D" target="_blank" rel="noopener" class="soc" aria-label="NovaDeck on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="mailto:officialnovadeck@gmail.com" class="soc" aria-label="Email NovaDeck">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M3 6l9 7 9-7"/></svg>
+          </a>
+        </div>
+        <div class="foot-meta">Hand-built LED risers for DJs · © 2026 NovaDeck</div>
+      </div>
+    </footer>
+  </main>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded archive image">
+    <button class="lightbox-close" type="button" aria-label="Close image viewer">&times;</button>
+    <img alt="" src="">
+    <div class="lightbox-label"></div>
+  </div>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMobileMenu = () => {
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      menuToggle?.setAttribute('aria-label', 'Open navigation menu');
+      mobileMenu?.classList.remove('open');
+    };
+    if(menuToggle && mobileMenu){
+      menuToggle.addEventListener('click', () => {
+        const open = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!open));
+        menuToggle.setAttribute('aria-label', open ? 'Open navigation menu' : 'Close navigation menu');
+        mobileMenu.classList.toggle('open', !open);
+      });
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+    }
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+    const lightboxLabel = lightbox.querySelector('.lightbox-label');
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      lightboxImage.src = '';
+    };
+    document.querySelectorAll('.media-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        const image = card.querySelector('img');
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxLabel.textContent = card.querySelector('.media-caption').textContent;
+        lightbox.classList.add('is-open');
+      });
+    });
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>

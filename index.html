@@ -53,9 +53,10 @@
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
   /* ---------------- NAV ---------------- */
-  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
-    background:rgba(6,7,13,.72);border-bottom:1px solid var(--line)}
+  nav{position:sticky;top:0;z-index:50;
+    background:var(--ink);border-bottom:1px solid var(--line)}
   .nav-in{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+  .nav-left{display:flex;align-items:center;gap:24px}
   .brand{display:flex;align-items:flex-end;gap:0;position:relative;font-family:'Poppins';font-weight:700;font-size:21px;letter-spacing:-.01em;padding-bottom:8px}
   .brand .tm{font-size:.5em;color:var(--fog);font-weight:600;vertical-align:super;margin-left:2px}
   .brand::after{content:"";position:absolute;left:-3px;right:-3px;bottom:0;height:4px;border-radius:2px;
@@ -66,6 +67,15 @@
   .nav-right{display:flex;align-items:center;gap:16px}
   .nav-ig{color:var(--mute);display:flex;transition:color .2s ease, transform .15s ease}
   .nav-ig:hover{color:var(--cyan);transform:translateY(-1px)}
+  .nav-tab{color:var(--mute);font-family:'Poppins';font-size:13px;font-weight:600;transition:color .2s ease}
+  .nav-tab:hover{color:var(--cyan)}
+  .nav-tab.active{color:var(--cyan)}
+  .menu-toggle{display:none;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;gap:5px;border:1px solid var(--line2);border-radius:50%;background:transparent;color:var(--chalk);cursor:pointer}
+  .menu-toggle span{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .2s ease,opacity .2s ease}
+  .menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(7px) rotate(45deg)}
+  .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-7px) rotate(-45deg)}
+  .mobile-menu{display:none}
   .socials{display:flex;justify-content:center;gap:14px;margin:24px 0 4px}
   .soc{width:42px;height:42px;border-radius:11px;border:1px solid var(--line2);color:var(--mute);
     display:flex;align-items:center;justify-content:center;transition:color .2s ease, border-color .2s ease, transform .15s ease, box-shadow .2s ease}
@@ -233,6 +243,16 @@
     background:linear-gradient(180deg,var(--panel),var(--ink2));padding:48px 40px;max-width:620px;margin:0 auto;
     box-shadow:0 30px 80px rgba(0,0,0,.5)}
   @media(max-width:560px){.wl-card{padding:34px 24px}}
+  @media(max-width:760px){
+    .nav-in{position:relative}
+    .nav-left .nav-tab{display:none}
+    .nav-right{display:none}
+    .menu-toggle{display:flex}
+    .mobile-menu{position:fixed;top:0;right:0;bottom:0;left:auto;width:min(320px,84vw);z-index:70;padding:94px 24px 28px;border-left:1px solid var(--line);background:var(--ink);box-shadow:-18px 0 50px rgba(0,0,0,.38);transform:translateX(100%);transition:transform .28s ease}
+    .mobile-menu.open{display:flex;flex-direction:column;align-items:stretch;gap:8px;transform:translateX(0)}
+    .mobile-menu a{padding:16px 12px;border-bottom:1px solid var(--line);color:var(--mute);font-family:'Poppins';font-size:18px;font-weight:600}
+    .mobile-menu a:hover,.mobile-menu a.active{color:var(--cyan);background:rgba(35,231,255,.06)}
+  }
   .wl-card .sec-eyebrow,.wl-card .sec-title{text-align:center}
   .wl-card .sec-title{margin:0 auto 12px}
   .wl-card .sec-lead{text-align:center;margin:0 auto 32px}
@@ -280,12 +300,26 @@
 
 <nav>
   <div class="nav-in">
-    <div class="brand display">novadeck</div>
+    <div class="nav-left">
+      <div class="brand display">novadeck</div>
+      <a href="index.html" class="nav-tab active display" aria-current="page">Home</a>
+      <a href="our-journey.html" class="nav-tab display">Our Journey</a>
+      <a href="https://76z6kw-xw.myshopify.com/" target="_blank" rel="noopener" class="nav-tab display">Our Products</a>
+    </div>
     <div class="nav-right">
       <a href="https://www.instagram.com/officialnovadeck?igsi=MTY1dWVtNXdyajd6NA%3D%3D" target="_blank" rel="noopener" class="nav-ig" aria-label="NovaDeck on Instagram">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
       </a>
-      <a href="#waitlist" class="nav-cta display">Join our newsletter</a>
+      <a href="https://76z6kw-xw.myshopify.com/" target="_blank" rel="noopener" class="nav-cta display">Buy now</a>
+    </div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html" class="active" aria-current="page">Home</a>
+      <a href="our-journey.html">Our Journey</a>
+      <a href="https://76z6kw-xw.myshopify.com/" target="_blank" rel="noopener">Our Products</a>
+      <a href="https://76z6kw-xw.myshopify.com/" target="_blank" rel="noopener">Buy now</a>
     </div>
   </div>
 </nav>
@@ -321,7 +355,7 @@
 </header>
 
 <div class="batch-banner" role="status">
-  <div class="batch-title display">Novadeck product line - coming soon!</div>
+  <div class="batch-title display">Novadeck GRV6 - COMING SOON!</div>
   <div class="batch-detail">Batch 1 &amp; 2 SOLD OUT!</div>
 </div>
 
@@ -366,7 +400,7 @@
 
     <div class="carousel reveal" id="carousel">
       <div class="car-viewport">
-        <span class="car-count" id="carCount">1 / 12</span>
+        <span class="car-count" id="carCount">1 / 10</span>
         <button class="car-btn car-prev" id="carPrev" aria-label="Previous photo">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
@@ -374,18 +408,16 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
         <div class="car-track" id="carTrack">
-        <div class="car-slide"><img src="images/novadeck-01.jpg" alt="NovaDeck setup 1" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-02.jpg" alt="NovaDeck setup 2" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-03.jpg" alt="NovaDeck setup 3" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-04.jpg" alt="NovaDeck setup 4" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-05.jpg" alt="NovaDeck setup 5" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-06.jpg" alt="NovaDeck setup 6" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-07.jpg" alt="NovaDeck setup 7" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-08.jpg" alt="NovaDeck setup 8" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-09.png" alt="NovaDeck setup 9" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-10.png" alt="NovaDeck setup 10" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-11.jpg" alt="NovaDeck setup 11" loading="lazy"></div>
-        <div class="car-slide"><img src="images/novadeck-12.jpg" alt="NovaDeck setup 12" loading="lazy"></div>
+        <div class="car-slide"><img src="images/GRV6/Photo 1.png" alt="NovaDeck GRV6 setup 1" loading="lazy"></div>
+        <div class="car-slide"><img src="images/GRV6/Photo 2.png" alt="NovaDeck GRV6 setup 2" loading="lazy"></div>
+        <div class="car-slide"><img src="images/GRV6/Photo 3.png" alt="NovaDeck GRV6 setup 3" loading="lazy"></div>
+        <div class="car-slide"><img src="images/FLX4/Photo2.png" alt="NovaDeck FLX4 setup 1" loading="lazy"></div>
+        <div class="car-slide"><img src="images/FLX4/Photo 3.png" alt="NovaDeck FLX4 setup 2" loading="lazy"></div>
+        <div class="car-slide"><img src="images/FLX4/buckeye lake.jpg" alt="NovaDeck FLX4 setup 3" loading="lazy"></div>
+        <div class="car-slide"><img src="images/FLX4/basement glow.jpg" alt="NovaDeck FLX4 setup 4" loading="lazy"></div>
+        <div class="car-slide"><img src="images/FLX4/basement glow 2.jpg" alt="NovaDeck FLX4 setup 5" loading="lazy"></div>
+        <div class="car-slide"><img src="images/FLX4/basement glow 3.jpg" alt="NovaDeck FLX4 setup 6" loading="lazy"></div>
+        <div class="car-slide"><img src="images/FLX4/basement glow 4.jpg" alt="NovaDeck FLX4 setup 7" loading="lazy"></div>
         </div>
       </div>
       <div class="car-dots" id="carDots"></div>
@@ -481,6 +513,24 @@
 </footer>
 
 <script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeMobileMenu = () => {
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    menuToggle?.setAttribute('aria-label', 'Open navigation menu');
+    mobileMenu?.classList.remove('open');
+  };
+  if(menuToggle && mobileMenu){
+    menuToggle.addEventListener('click', () => {
+      const open = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!open));
+      menuToggle.setAttribute('aria-label', open ? 'Open navigation menu' : 'Close navigation menu');
+      mobileMenu.classList.toggle('open', !open);
+    });
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+  }
   // ---- carousel (responsive, shows multiple per view) ----
   (function(){
     const track = document.getElementById('carTrack');
